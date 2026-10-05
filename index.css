@@ -1,0 +1,116 @@
+body
+{
+   
+    
+    box-sizing: border-box;
+    font-family: 'Tajawal', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+.stadts
+{
+    text-align: right;
+    margin-right: 20px;
+   
+  
+
+}
+h1, h6
+{
+    margin: 0;
+   
+}
+.container
+{
+   margin-top: 100px;
+}
+#stadt
+{
+    font-size: 200px;
+    color: white;
+    font-weight: 400;
+    
+}
+#datum{
+    
+        color: white;
+        font-size: 40px;
+        font-weight: 200;
+}
+.boxs{
+   /* display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 6 gleich breite Spalten */
+    gap: 16px; /* Abstand zwischen den Boxen */
+    
+    padding: 16px;
+    /* Falls der Viewport zu schmal ist, erlauben wir horizontales Scrollen 
+    overflow-x: auto;
+    box-sizing: border-box;*/
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px;
+    flex-wrap: wrap;
+    
+}
+.box{
+    
+    height: 150px;
+    width: 170px;
+   box-shadow:
+       12px 12px 24px rgba(0, 0, 0, 0.045),
+      -12px -12px 24px rgba(255, 255, 255, 0.227);
+   
+}
+   
+
+.name{
+    background-color: rgb(90 156 156);
+    font-size: 19px;
+    padding-bottom: 15px;
+    padding-left: 2px;
+    color: white;
+}
+.name span{
+    margin: 5px;
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+.time{
+    
+    background-color: white;
+    font-size: 50px;
+    font-weight: bold;
+    /* width: 100%; */
+    height: 100%;
+    display: flex
+    
+;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    
+}
+.select{
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: 20px; */
+    top: 50px;
+    padding: 20px;
+    margin: 69px;
+}
+select{
+    width: 300px;
+    height: 40px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    padding: 10px;
+    outline: none;
+    background: none;
+    color: white;
+}
+option{
+    font-size: 16px;
+}

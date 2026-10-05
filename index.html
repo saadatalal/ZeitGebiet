@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js" ></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div style="height: 100vh;">
+        <div class="container">
+            <div class="stadts">
+                <h1 id="stadt">stadt</h1>
+                <h6 id="datum">datum</h6>
+            </div>
+            <hr style="margin: 0;
+                     border-color: #3500e142">
+        </div>
+        <!--  -->
+        <div >
+            <div class="boxs">
+                <div class="box">
+                    <div class="name">
+                         <span >Al fajr</span>
+                    </div>
+                   
+                    <div class="time">
+                        <span  id="fajr">05:00</span>
+                    </div>
+
+                </div>
+                <div class="box">
+                    <div class="name">
+                        <span >sonnenaufgang</span>
+                    </div>
+                    <div class="time">
+                        <span  id="sunrise">05:00</span>
+                    </div>
+
+                </div>
+                <div class="box">
+                    <div class="name">
+                        <span >al dhuhr</span>
+                    </div>
+                    <div class="time">
+                        <span id="dhuhr">05:00</span>
+                    </div>
+
+                </div>
+                <div class="box">
+                    <div class="name">
+                        <span >Al asr</span>
+                    </div>
+                   
+                    <div class="time">
+                        <span id="asr">05:00</span>
+                    </div>
+
+                </div>
+                <div class="box">
+                    <div class="name">
+                        <span >Al maghrib</span>
+                    </div>
+                    <div class="time">
+                        <span  id="maghrib">05:00</span>
+                    </div>
+
+                </div>
+                 <div class="box">
+                    <div class="name">
+                        <span >Al ishaa</span>
+                    </div>
+                    
+                    <div class="time">
+                        <span id="isha">05:00</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="select">
+            <select id="citys-select">
+               
+
+            </select>
+        </div>
+    
+
+    </div>
+</body>
+<script>
+    let citys=[
+        "Makkah al Mukarramah",
+        "Riyadh",
+        "Jeddah",
+        "Dammam",
+        "Medina",
+        "Khobar",
+        "Tabuk",
+        "Hail",
+        "Abha",
+        "Najran"
+    ];
+    for(let city of citys ){
+        const content=` <option>${city}</option>`;
+        document.getElementById("citys-select").innerHTML+=content;
+
+    }
+    document.getElementById("citys-select").addEventListener("change",function(){
+        let city=this.value;
+        document.getElementById("stadt").innerHTML=city;
+        getparraytimingscity(city);
+
+    })
+    function getparraytimingscity(cityname){
+        let params = {
+        country:"SA",
+        city:cityname
+    }
+    
+        axios.get("https://api.aladhan.com/v1/timingsByCity", { params:params })
+            .then((response) => {
+                const timings=response.data.data.timings;
+                filltimings("fajr",timings.Fajr);
+                filltimings("sunrise",timings.Sunrise);
+                filltimings("dhuhr",timings.Dhuhr);
+                filltimings("asr",timings.Asr);
+                filltimings("maghrib",timings.Maghrib);
+                filltimings("isha",timings.Isha);
+                const datum=response.data.data.date.readable;
+                const tag=response.data.data.date.hijri.weekday.ar;
+                document.getElementById("datum").innerHTML=datum + "  " + tag;
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+   
+
+    }
+
+    getparraytimingscity("Makkah al Mukarramah");
+  
+    function filltimings(id, time){
+        document.getElementById(id).innerHTML=time;
+    }
+   
+</script>
+</html>
